@@ -129,69 +129,60 @@ CREATE TABLE transactions (
 
 ### 8.1 Use Case Diagram
 ```mermaid
-usecaseDiagram
-    actor User as "Người dùng"
-
-    rectangle "Hệ thống Quản lý Chi tiêu" {
-        User -- (Đăng ký tài khoản)
-        User -- (Đăng nhập hệ thống)
-        User -- (Đăng xuất)
-        User -- (Quản lý Giao dịch)
-        User -- (Xem Báo cáo)
-
-        (Quản lý Giao dịch) ..> (Thêm Giao dịch) : <<include>>
-        (Quản lý Giao dịch) ..> (Sửa Giao dịch) : <<include>>
-        (Quản lý Giao dịch) ..> (Xóa Giao dịch) : <<include>>
-
-        (Xem Báo cáo) ..> (Xem biểu đồ) : <<extend>>
-        (Xem Báo cáo) ..> (Xuất file CSV) : <<extend>>
-    }
+graph TD
+    User((Người dùng))
+    subgraph Hệ thống Quản lý Chi tiêu
+    A[Đăng ký tài khoản]
+    B[Đăng nhập hệ thống]
+    C[Đăng xuất]
+    D[Quản lý Giao dịch]
+    E[Xem Báo cáo]
+    F[Thêm Giao dịch]
+    G[Sửa Giao dịch]
+    H[Xóa Giao dịch]
+    I[Xem biểu đồ]
+    J[Xuất file CSV]
+    end
+    
+    User --> A
+    User --> B
+    User --> C
+    User --> D
+    User --> E
+    
+    D --> F
+    D --> G
+    D --> H
+    
+    E --> I
+    E --> J
 ```
 
 ### 8.2 ERD Diagram
 ```mermaid
-erDiagram
-    users {
-        int id PK "Khóa chính"
-        varchar(50) username "Tên đăng nhập (duy nhất)"
-        varchar(255) password "Mật khẩu (hashed)"
-        varchar(100) email "Email"
-    }
+graph LR
+    Users[Users<br/>id INT PK<br/>username VARCHAR(50)<br/>password VARCHAR(255)<br/>email VARCHAR(100)]
+    Categories[Categories<br/>id INT PK<br/>name VARCHAR(100)<br/>type ENUM]
+    Transactions[Transactions<br/>id INT PK<br/>user_id INT FK<br/>category_id INT FK<br/>amount DECIMAL<br/>date DATE<br/>note TEXT]
 
-    categories {
-        int id PK "Khóa chính"
-        varchar(100) name "Tên danh mục"
-        ENUM('income', 'expense') type "Loại (thu/chi)"
-    }
-
-    transactions {
-        int id PK "Khóa chính"
-        int user_id FK "Khóa ngoại (users)"
-        int category_id FK "Khóa ngoại (categories)"
-        decimal(10,2) amount "Số tiền"
-        date date "Ngày giao dịch"
-        text note "Ghi chú"
-    }
-
-    users ||--o{ transactions : "có"
-    categories ||--o{ transactions : "thuộc"
+    Users -- 1:N --> Transactions
+    Categories -- 1:N --> Transactions
 ```
 
-### 8.3 Activity Diagram (chuyển sang flowchart)
+### 8.3 Activity Diagram
 ```mermaid
-flowchart TD
-    Start([Start]) --> A[Người dùng nhấn nút "Thêm Giao dịch"]
-    A --> B[Hệ thống hiển thị Form Nhập liệu]
-    B --> C[Người dùng nhập (Số tiền, Danh mục, Ngày, Ghi chú)]
-    C --> D[Người dùng nhấn "Lưu"]
-    D --> E{Dữ liệu có hợp lệ không?}
-    E -- Có --> F[Hệ thống lưu thông tin vào CSDL (Bảng 'transactions')]
-    F --> G[Hiển thị thông báo "Thêm thành công"]
-    G --> H[Chuyển về trang Dashboard]
-    E -- Không --> I[Hiển thị thông báo lỗi (Ví dụ: "Vui lòng nhập số tiền")]
-    I --> B
-    H --> End([End])
-    I --> End
+graph TD
+    A([Start]) --> B[Người dùng nhấn nút Thêm Giao dịch]
+    B --> C[Hiển thị Form Nhập liệu]
+    C --> D[Nhập thông tin giao dịch]
+    D --> E[Nhấn Lưu]
+    E --> F{Kiểm tra<br/>dữ liệu?}
+    F -->|Hợp lệ| G[Lưu vào CSDL]
+    G --> H[Hiển thị thông báo thành công]
+    H --> I[Về trang Dashboard]
+    F -->|Không hợp lệ| J[Hiển thị lỗi]
+    J --> C
+    I --> K([End])
 ```
 
 ### 8.4 Sequence Diagram
