@@ -129,7 +129,7 @@ CREATE TABLE transactions (
 
 ### 8.1 Use Case Diagram
 ```mermaid
-useCaseDiagram
+usecaseDiagram
     actor User as "Người dùng"
 
     rectangle "Hệ thống Quản lý Chi tiêu" {
@@ -177,24 +177,21 @@ erDiagram
     categories ||--o{ transactions : "thuộc"
 ```
 
-### 8.3 Activity Diagram
-
+### 8.3 Activity Diagram (chuyển sang flowchart)
 ```mermaid
-activityDiagram
-    start
-    :Người dùng nhấn nút "Thêm Giao dịch";
-    :Hệ thống hiển thị Form Nhập liệu;
-    :Người dùng nhập (Số tiền, Danh mục, Ngày, Ghi chú);
-    :Người dùng nhấn "Lưu";
-    if (Dữ liệu có hợp lệ không?) then (Có)
-        :Hệ thống lưu thông tin vào CSDL (Bảng 'transactions');
-        :Hiển thị thông báo "Thêm thành công";
-        :Chuyển về trang Dashboard;
-    else (Không)
-        :Hiển thị thông báo lỗi (Ví dụ: "Vui lòng nhập số tiền");
-        :Giữ người dùng ở lại Form Nhập liệu;
-    endif
-    stop
+flowchart TD
+    Start([Start]) --> A[Người dùng nhấn nút "Thêm Giao dịch"]
+    A --> B[Hệ thống hiển thị Form Nhập liệu]
+    B --> C[Người dùng nhập (Số tiền, Danh mục, Ngày, Ghi chú)]
+    C --> D[Người dùng nhấn "Lưu"]
+    D --> E{Dữ liệu có hợp lệ không?}
+    E -- Có --> F[Hệ thống lưu thông tin vào CSDL (Bảng 'transactions')]
+    F --> G[Hiển thị thông báo "Thêm thành công"]
+    G --> H[Chuyển về trang Dashboard]
+    E -- Không --> I[Hiển thị thông báo lỗi (Ví dụ: "Vui lòng nhập số tiền")]
+    I --> B
+    H --> End([End])
+    I --> End
 ```
 
 ### 8.4 Sequence Diagram
