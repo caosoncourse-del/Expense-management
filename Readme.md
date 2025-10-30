@@ -44,7 +44,7 @@ Dự án này là một ứng dụng web giúp người dùng quản lý chi ti�
 
 ## 👥 2. Thông tin sinh viên
 - Họ và tên: **Cao Nguyễn Anh Sơn**
-- Mssv: **B24DTCN496**
+- MSSV: **B24DTCN496**
 - Lớp: **D24TXCN12-B**
 
 ---
@@ -181,7 +181,6 @@ erDiagram
 
 ```mermaid
 activityDiagram
-    title : Luồng Thêm Giao dịch mới
     start
     :Người dùng nhấn nút "Thêm Giao dịch";
     :Hệ thống hiển thị Form Nhập liệu;
@@ -238,7 +237,7 @@ git clone https://github.com/caosoncourse-del/Expense-management.git
 cd Expense-management
 ```
 
-**Cấu hình Docker:**
+**Cấu hình Docker (docker-compose.yml):**
 
 ```yaml
 version: '3.8'
@@ -275,7 +274,7 @@ volumes:
 docker-compose up -d
 ```
 
-**Cấu hình kết nối database:**
+**Cấu hình kết nối database (ví dụ file .env hoặc config):**
 
 ```php
 DB_HOST = 'db';
