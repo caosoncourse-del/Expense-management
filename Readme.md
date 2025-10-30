@@ -17,27 +17,24 @@
 ---
 
 ## 📚 Mục lục
-
 * [🌟 1. Mục tiêu và mô tả hệ thống](#-1-mục-tiêu-và-mô-tả-hệ-thống)
-* [👥 2. Thành viên nhóm](#-2-thành-viên-nhóm)
+* [👥 2. Thông tin sinh viên](#-2-thông-tin-sinh-viên)
 * [🧩 3. Chức năng chính (Functional Requirements)](#-3-chức-năng-chính-functional-requirements)
 * [🧠 4. Yêu cầu phi chức năng (Non-functional Requirements)](#-4-yêu-cầu-phi-chức-năng-non-functional-requirements)
 * [💻 5. Công nghệ sử dụng](#-5-công-nghệ-sử-dụng)
 * [📐 6. Thiết kế cơ sở dữ liệu](#-6-thiết-kế-cơ-sở-dữ-liệu)
 * [📊 7. Luồng hoạt động](#-7-luồng-hoạt-động)
-* [🎯 8. Sơ đồ Use-Case (mô tả)](#-8-sơ-đồ-use-case-mô-tả)
-* [🚀 9. Cài đặt & chạy thử](#-9-cài-đặt--chạy-thử)
+* [🎯 8. Sơ đồ hệ thống](#-8-sơ-đồ-hệ-thống)
+* [🚀 9. Cài đặt & chạy thử bằng Docker](#-9-cài-đặt--chạy-thử-bằng-docker)
 * [💡 10. Ý tưởng mở rộng](#-10-ý-tưởng-mở-rộng)
 * [🧾 11. Yêu cầu nộp bài (Môn học)](#-11-yêu-cầu-nộp-bài-môn-học)
 
 ---
 
 ## 🌟 1. Mục tiêu và mô tả hệ thống
-
 Dự án này là một ứng dụng web giúp người dùng quản lý chi tiêu cá nhân một cách hiệu quả.
 
 Ứng dụng cho phép người dùng:
-
 * Ghi lại thu nhập và chi tiêu hàng ngày.
 * Phân loại chi tiêu (ăn uống, đi lại, giải trí…).
 * Xem báo cáo tổng hợp theo ngày / tháng / danh mục.
@@ -45,7 +42,7 @@ Dự án này là một ứng dụng web giúp người dùng quản lý chi ti�
 
 ---
 
-## 👥 Thông tin sinh viên
+## 👥 2. Thông tin sinh viên
 - Họ và tên: **Cao Nguyễn Anh Sơn**
 - Mssv: **B24DTCN496**
 - Lớp: **D24TXCN12-B**
@@ -53,7 +50,6 @@ Dự án này là một ứng dụng web giúp người dùng quản lý chi ti�
 ---
 
 ## 🧩 3. Chức năng chính (Functional Requirements)
-
 | Nhóm chức năng              | Mô tả                                                                      |
 | :-------------------------- | :------------------------------------------------------------------------- |
 | **Đăng ký / Đăng nhập**     | Người dùng tạo tài khoản, đăng nhập để xem dữ liệu riêng của mình.         |
@@ -66,7 +62,6 @@ Dự án này là một ứng dụng web giúp người dùng quản lý chi ti�
 ---
 
 ## 🧠 4. Yêu cầu phi chức năng (Non-functional Requirements)
-
 * **Giao diện:** Thân thiện, dễ thao tác (responsive nếu có thể).
 * **Bảo mật:** Dữ liệu chỉ hiển thị cho đúng người dùng (mật khẩu được hash).
 * **Lưu trữ:** Dữ liệu lưu trữ ổn định (MySQL).
@@ -75,7 +70,6 @@ Dự án này là một ứng dụng web giúp người dùng quản lý chi ti�
 ---
 
 ## 💻 5. Công nghệ sử dụng
-
 * **Frontend:** HTML, CSS, JavaScript, Bootstrap
 * **Backend:** PHP (thuần hoặc Laravel)
 * **Database:** MySQL
@@ -85,11 +79,7 @@ Dự án này là một ứng dụng web giúp người dùng quản lý chi ti�
 ---
 
 ## 📐 6. Thiết kế cơ sở dữ liệu
-
-Cấu trúc các bảng chính trong CSDL:
-
 **Bảng `users`:**
-
 ```sql
 CREATE TABLE users (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -100,7 +90,6 @@ CREATE TABLE users (
 ```
 
 **Bảng `categories`:**
-
 ```sql
 CREATE TABLE categories (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -110,7 +99,6 @@ CREATE TABLE categories (
 ```
 
 **Bảng `transactions`:**
-
 ```sql
 CREATE TABLE transactions (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -127,7 +115,6 @@ CREATE TABLE transactions (
 ---
 
 ## 📊 7. Luồng hoạt động
-
 1. Người dùng Đăng ký tài khoản.
 2. Người dùng Đăng nhập vào hệ thống.
 3. Trang Dashboard hiển thị tổng quan (ví dụ: tổng chi tiêu tháng này).
@@ -138,18 +125,107 @@ CREATE TABLE transactions (
 
 ---
 
-## 🎯 8. Sơ đồ Use-Case (mô tả)
+## 🎯 8. Sơ đồ hệ thống
 
-**Actor:** User (Người dùng)
+### 8.1 Use Case Diagram
+```mermaid
+useCaseDiagram
+    actor User as "Người dùng"
 
-**Use-case chính:**
+    rectangle "Hệ thống Quản lý Chi tiêu" {
+        User -- (Đăng ký tài khoản)
+        User -- (Đăng nhập hệ thống)
+        User -- (Đăng xuất)
+        User -- (Quản lý Giao dịch)
+        User -- (Xem Báo cáo)
 
-* Đăng ký tài khoản
-* Đăng nhập hệ thống
-* Quản lý chi tiêu (Thêm / Sửa / Xóa giao dịch)
-* Xem báo cáo chi tiêu
-* Quản lý danh mục (optional)
-* Đăng xuất
+        (Quản lý Giao dịch) ..> (Thêm Giao dịch) : <<include>>
+        (Quản lý Giao dịch) ..> (Sửa Giao dịch) : <<include>>
+        (Quản lý Giao dịch) ..> (Xóa Giao dịch) : <<include>>
+
+        (Xem Báo cáo) ..> (Xem biểu đồ) : <<extend>>
+        (Xem Báo cáo) ..> (Xuất file CSV) : <<extend>>
+    }
+```
+
+### 8.2 ERD Diagram
+```mermaid
+erDiagram
+    users {
+        int id PK "Khóa chính"
+        varchar(50) username "Tên đăng nhập (duy nhất)"
+        varchar(255) password "Mật khẩu (hashed)"
+        varchar(100) email "Email"
+    }
+
+    categories {
+        int id PK "Khóa chính"
+        varchar(100) name "Tên danh mục"
+        ENUM('income', 'expense') type "Loại (thu/chi)"
+    }
+
+    transactions {
+        int id PK "Khóa chính"
+        int user_id FK "Khóa ngoại (users)"
+        int category_id FK "Khóa ngoại (categories)"
+        decimal(10,2) amount "Số tiền"
+        date date "Ngày giao dịch"
+        text note "Ghi chú"
+    }
+
+    users ||--o{ transactions : "có"
+    categories ||--o{ transactions : "thuộc"
+```
+
+### 8.3 Activity Diagram
+
+```mermaid
+activityDiagram
+    title : Luồng Thêm Giao dịch mới
+    start
+    :Người dùng nhấn nút "Thêm Giao dịch";
+    :Hệ thống hiển thị Form Nhập liệu;
+    :Người dùng nhập (Số tiền, Danh mục, Ngày, Ghi chú);
+    :Người dùng nhấn "Lưu";
+    if (Dữ liệu có hợp lệ không?) then (Có)
+        :Hệ thống lưu thông tin vào CSDL (Bảng 'transactions');
+        :Hiển thị thông báo "Thêm thành công";
+        :Chuyển về trang Dashboard;
+    else (Không)
+        :Hiển thị thông báo lỗi (Ví dụ: "Vui lòng nhập số tiền");
+        :Giữ người dùng ở lại Form Nhập liệu;
+    endif
+    stop
+```
+
+### 8.4 Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor User as Người dùng
+    participant Frontend as "Trang Web (Browser)"
+    participant Backend as "Máy chủ (PHP)"
+    participant Database as "CSDL (MySQL)"
+
+    User->>Frontend: 1. Nhập thông tin giao dịch
+    User->>Frontend: 2. Nhấn nút "Lưu"
+    Frontend->>Backend: 3. Gửi Yêu cầu POST (với dữ liệu)
+    
+    activate Backend
+    Backend->>Backend: 4. Xác thực dữ liệu (validate)
+    alt Dữ liệu hợp lệ
+        Backend->>Database: 5. Tạo câu lệnh INSERT INTO transactions...
+        activate Database
+        Database-->>Backend: 6. Trả về kết quả (thành công)
+        deactivate Database
+        Backend-->>Frontend: 7. Gửi thông báo "Thêm thành công"
+    else Dữ liệu không hợp lệ
+        Backend-->>Frontend: 8. Gửi thông báo lỗi (ví dụ: "Số tiền không hợp lệ")
+    end
+    deactivate Backend
+
+    Frontend->>User: 9. Hiển thị thông báo
+```
 
 ---
 
@@ -163,9 +239,6 @@ cd Expense-management
 ```
 
 **Cấu hình Docker:**
-
-1. Tạo file `Dockerfile` cho PHP + Apache.
-2. Tạo file `docker-compose.yml` để chạy PHP + MySQL. Ví dụ cơ bản:
 
 ```yaml
 version: '3.8'
@@ -204,8 +277,6 @@ docker-compose up -d
 
 **Cấu hình kết nối database:**
 
-* Chỉnh sửa file `config.php` với thông tin:
-
 ```php
 DB_HOST = 'db';
 DB_NAME = 'personal_finance';
@@ -239,3 +310,4 @@ Các tài liệu cần thiết khi nộp báo cáo môn "Nhập môn Công ngh�
 * Mô tả kiến trúc hệ thống (Frontend-Backend-Database).
 * Ảnh chụp giao diện demo hoặc prototype (Figma).
 * Nhật ký nhóm, phân công công việc, kế hoạch tiến độ (tùy yêu cầu GV).
+
