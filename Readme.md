@@ -45,11 +45,10 @@ Dự án này là một ứng dụng web giúp người dùng quản lý chi ti�
 
 ---
 
-## 👥 2. Thành viên nhóm
-
-* *(Điền tên thành viên 1)*
-* *(Điền tên thành viên 2)*
-* *(…)*
+## 👥 Thông tin sinh viên
+- Họ và tên: **Cao Nguyễn Anh Sơn**
+- Mssv: **B24DTCN496**
+- Lớp: **D24TXCN12-B**
 
 ---
 
@@ -159,8 +158,8 @@ CREATE TABLE transactions (
 **Clone repository:**
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/caosoncourse-del/Expense-management.git
+cd Expense-management
 ```
 
 **Cấu hình Docker:**
