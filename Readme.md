@@ -160,13 +160,31 @@ graph TD
 
 ### 8.2 ERD Diagram
 ```mermaid
-graph LR
-    Users[Users<br/>id INT PK<br/>username VARCHAR(50)<br/>password VARCHAR(255)<br/>email VARCHAR(100)]
-    Categories[Categories<br/>id INT PK<br/>name VARCHAR(100)<br/>type ENUM]
-    Transactions[Transactions<br/>id INT PK<br/>user_id INT FK<br/>category_id INT FK<br/>amount DECIMAL<br/>date DATE<br/>note TEXT]
+erDiagram
+    USERS {
+        int id PK
+        varchar username
+        varchar password
+        varchar email
+    }
+    
+    CATEGORIES {
+        int id PK
+        varchar name
+        enum type
+    }
+    
+    TRANSACTIONS {
+        int id PK
+        int user_id FK
+        int category_id FK
+        decimal amount
+        date date
+        text note
+    }
 
-    Users -- 1:N --> Transactions
-    Categories -- 1:N --> Transactions
+    USERS ||--o{ TRANSACTIONS : has
+    CATEGORIES ||--o{ TRANSACTIONS : belongs_to
 ```
 
 ### 8.3 Activity Diagram
