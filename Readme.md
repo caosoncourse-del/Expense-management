@@ -22,12 +22,13 @@
 * [🧩 3. Chức năng chính (Functional Requirements)](#-3-chức-năng-chính-functional-requirements)
 * [🧠 4. Yêu cầu phi chức năng (Non-functional Requirements)](#-4-yêu-cầu-phi-chức-năng-non-functional-requirements)
 * [💻 5. Công nghệ sử dụng](#-5-công-nghệ-sử-dụng)
-* [📐 6. Thiết kế cơ sở dữ liệu](#-6-thiết-kế-cơ-sở-dữ-liệu)
-* [📊 7. Luồng hoạt động](#-7-luồng-hoạt-động)
-* [🎯 8. Sơ đồ hệ thống](#-8-sơ-đồ-hệ-thống)
-* [🚀 9. Cài đặt & chạy thử bằng Docker](#-9-cài-đặt--chạy-thử-bằng-docker)
-* [💡 10. Ý tưởng mở rộng](#-10-ý-tưởng-mở-rộng)
-* [🧾 11. Yêu cầu nộp bài (Môn học)](#-11-yêu-cầu-nộp-bài-môn-học)
+* [📂 6. Cấu trúc thư mục dự án](#-6-cấu-trúc-thư-mục-dự-án)
+* [📐 7. Thiết kế cơ sở dữ liệu](#-7-thiết-kế-cơ-sở-dữ-liệu)
+* [📊 8. Luồng hoạt động](#-8-luồng-hoạt-động)
+* [🎯 9. Sơ đồ hệ thống](#-9-sơ-đồ-hệ-thống)
+* [🚀 10. Cài đặt & chạy thử bằng Docker](#-10-cài-đặt--chạy-thử-bằng-docker)
+* [💡 11. Ý tưởng mở rộng](#-11-ý-tưởng-mở-rộng)
+* [🧾 12. Yêu cầu nộp bài (Môn học)](#-12-yêu-cầu-nộp-bài-môn-học)
 
 ---
 
@@ -78,7 +79,36 @@ Dự án này là một ứng dụng web giúp người dùng quản lý chi ti�
 
 ---
 
-## 📐 6. Thiết kế cơ sở dữ liệu
+## 📂 6. Cấu trúc thư mục dự án
+```
+expense-management/
+├── src/                    # Mã nguồn chính
+│   ├── config/            # Cấu hình (database, constants)
+│   ├── controllers/       # Xử lý logic
+│   ├── models/           # Tương tác với database
+│   └── views/            # Giao diện người dùng
+│       ├── layouts/      # Layout chung
+│       ├── auth/         # Trang đăng nhập/đăng ký
+│       ├── dashboard/    # Trang tổng quan
+│       └── transactions/ # Trang quản lý giao dịch
+├── public/               # File tĩnh (CSS, JS, images)
+│   ├── css/
+│   ├── js/
+│   └── images/
+├── database/            # SQL scripts
+├── tests/              # Unit tests
+├── docker/            # Docker configuration
+├── vendor/           # Dependencies (composer)
+├── .env             # Environment variables
+├── .gitignore
+├── composer.json
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+## 📐 7. Thiết kế cơ sở dữ liệu
 **Bảng `users`:**
 ```sql
 CREATE TABLE users (
@@ -114,7 +144,7 @@ CREATE TABLE transactions (
 
 ---
 
-## 📊 7. Luồng hoạt động
+## 📊 8. Luồng hoạt động
 1. Người dùng Đăng ký tài khoản.
 2. Người dùng Đăng nhập vào hệ thống.
 3. Trang Dashboard hiển thị tổng quan (ví dụ: tổng chi tiêu tháng này).
@@ -125,9 +155,9 @@ CREATE TABLE transactions (
 
 ---
 
-## 🎯 8. Sơ đồ hệ thống
+## 🎯 9. Sơ đồ hệ thống
 
-### 8.1 Use Case Diagram
+### 9.1 Use Case Diagram
 ```mermaid
 graph TD
     User((Người dùng))
@@ -158,7 +188,7 @@ graph TD
     E --> J
 ```
 
-### 8.2 ERD Diagram
+### 9.2 ERD Diagram
 ```mermaid
 erDiagram
     USERS {
@@ -187,7 +217,7 @@ erDiagram
     CATEGORIES ||--o{ TRANSACTIONS : belongs_to
 ```
 
-### 8.3 Activity Diagram
+### 9.3 Activity Diagram
 ```mermaid
 graph TD
     A([Start]) --> B[Người dùng nhấn nút Thêm Giao dịch]
@@ -203,7 +233,7 @@ graph TD
     I --> K([End])
 ```
 
-### 8.4 Sequence Diagram
+### 9.4 Sequence Diagram
 
 ```mermaid
 sequenceDiagram
@@ -234,7 +264,7 @@ sequenceDiagram
 
 ---
 
-## 🚀 9. Cài đặt & chạy thử bằng Docker
+## 🚀 10. Cài đặt & chạy thử bằng Docker
 
 **Clone repository:**
 
@@ -295,7 +325,7 @@ DB_PASS = 'pass123';
 
 ---
 
-## 💡 10. Ý tưởng mở rộng
+## 💡 11. Ý tưởng mở rộng
 
 * Thêm chức năng đặt Mục tiêu tiết kiệm (Saving Goal).
 * Cảnh báo nếu chi tiêu vượt hạn mức đã đặt.
@@ -304,7 +334,7 @@ DB_PASS = 'pass123';
 
 ---
 
-## 🧾 11. Yêu cầu nộp bài (Môn học)
+## 🧾 12. Yêu cầu nộp bài (Môn học)
 
 Các tài liệu cần thiết khi nộp báo cáo môn "Nhập môn Công nghệ phần mềm":
 
